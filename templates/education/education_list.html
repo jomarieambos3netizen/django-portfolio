@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'education/css/education.css' %}">
+{% endblock %}
+
+{% block title %}Education{% endblock %}
+
+{% block content %}
+
+<section id="education">
+  <div class="wrap">
+    <div class="edu-grid">
+      <div class="edu-left">
+        <div class="section-label reveal">Background</div>
+        <h2 class="reveal">Education &amp; Creative Journey</h2>
+        <p class="reveal d1">
+          A blend of formal education and self-taught creative skills in photography, graphic design, and visual editing.
+        </p>
+
+        <div class="edu-summary-cards reveal d2">
+
+          <div class="edu-sum-card">
+            <div class="edu-sum-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <div class="edu-sum-title">IT Degree</div>
+              <div class="edu-sum-sub">Ongoing · Bachelor of Science</div>
+            </div>
+          </div>
+
+          <div class="edu-sum-card">
+            <div class="edu-sum-icon"><i class="fas fa-camera"></i></div>
+            <div>
+              <div class="edu-sum-title">Photography Practice</div>
+              <div class="edu-sum-sub">Events, Creative Shoots</div>
+            </div>
+          </div>
+
+          <div class="edu-sum-card">
+            <div class="edu-sum-icon"><i class="fas fa-paint-brush"></i></div>
+            <div>
+              <div class="edu-sum-title">Design & Editing</div>
+              <div class="edu-sum-sub">Self-Taught & Continuous Learning</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="timeline">
+        {% for edu in educations %}
+        <div class="tl-item reveal d{{ forloop.counter }}">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div class="tl-title">{{ edu.degree }}</div>
+              <span class="tl-badge">{% if edu.end_year %}Completed{% else %}In Progress{% endif %}</span>
+            </div>
+            <div class="tl-school">{{ edu.institution }}</div>
+            <div class="tl-date">{{ edu.start_year }} – {{ edu.end_year|default:"Present" }}</div>
+            <div class="tl-desc">{{ edu.description }}</div>
+          </div>
+        </div>
+        {% empty %}
+
+        <!-- IT Degree -->
+        <div class="tl-item reveal d1">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div class="tl-title">Bachelor of Science in Information Technology</div>
+              <span class="tl-badge">In Progress</span>
+            </div>
+            <div class="tl-school">Your University</div>
+            <div class="tl-date">2023 – Present</div>
+            <div class="tl-desc">
+              Gained knowledge in digital tools, multimedia concepts, and creative workflows that support photography, editing, and design.
+            </div>
+          </div>
+        </div>
+
+        <!-- Photography -->
+        <div class="tl-item reveal d2">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div class="tl-title">Photography & Editing Experience</div>
+              <span class="tl-badge">Practice</span>
+            </div>
+            <div class="tl-school">Local Events & Personal Projects</div>
+            <div class="tl-date">Ongoing</div>
+            <div class="tl-desc">
+              Participated in photography and editing events, developing skills in composition, lighting, and visual storytelling.
+            </div>
+          </div>
+        </div>
+
+        <!-- Design -->
+        <div class="tl-item reveal d3">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div class="tl-title">Graphic Design & Visual Editing</div>
+              <span class="tl-badge">Self-Learning</span>
+            </div>
+            <div class="tl-school">Online Tools & Practice</div>
+            <div class="tl-date">Ongoing</div>
+            <div class="tl-desc">
+              Continuously improving skills in photo editing, layout design, and digital creativity using various tools and techniques.
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'education/js/education.js' %}"></script>
+{% endblock %}

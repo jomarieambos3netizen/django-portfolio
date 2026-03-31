@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'skills/css/skills.css' %}">
+{% endblock %}
+
+{% block title %}Skills{% endblock %}
+
+{% block content %}
+
+<section id="skills">
+  <div class="wrap">
+    <div class="skills-intro reveal">
+      <div class="section-label">Creative Skills</div>
+      <h2>Photography & Design</h2>
+      <p>Capturing moments, enhancing visuals, and creating impactful designs through creativity and editing.</p>
+    </div>
+
+    {% if categories %}
+      {% for category in categories %}
+      <div class="skills-category reveal">
+        <div class="category-header">
+          <span class="category-title">{{ category.name }}</span>
+        </div>
+        <div class="skills-grid">
+          {% for skill in category.skills.all %}
+          <div class="skill-card">
+            <div class="skill-icon">
+              <i class="{% if skill.icon %}{{ skill.icon }}{% else %}fas fa-palette{% endif %}"></i>
+            </div>
+            <h3>{{ skill.name }}</h3>
+            <p>{{ skill.description|default:"" }}</p>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Proficiency</span><span>{{ skill.proficiency }}%</span></div>
+              <div class="skill-bar"><div class="skill-bar-fill" data-w="{{ skill.proficiency }}"></div></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+
+    {% else %}
+      <!-- Fallback Creative Skills -->
+
+      <!-- Photography -->
+      <div class="skills-category reveal">
+        <div class="category-header">
+          <span class="category-icon"><i class="fas fa-camera"></i></span>
+          <span class="category-title">Photography</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-camera-retro"></i></div>
+            <h3>Portrait Photography</h3>
+            <p>Capturing subjects with proper lighting, angles, and emotion.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>80%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="80"></div></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-sun"></i></div>
+            <h3>Lighting & Composition</h3>
+            <p>Understanding natural and artificial lighting for better shots.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>75%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="75"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editing -->
+      <div class="skills-category reveal">
+        <div class="category-header">
+          <span class="category-icon"><i class="fas fa-adjust"></i></span>
+          <span class="category-title">Photo Editing</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-sliders-h"></i></div>
+            <h3>Color Grading</h3>
+            <p>Enhancing tones, colors, and mood of images.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>78%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="78"></div></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-magic"></i></div>
+            <h3>Retouching</h3>
+            <p>Cleaning up images and improving details for a polished look.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>70%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="70"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphic Design -->
+      <div class="skills-category reveal">
+        <div class="category-header">
+          <span class="category-icon"><i class="fas fa-paint-brush"></i></span>
+          <span class="category-title">Graphic Design</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-object-group"></i></div>
+            <h3>Layout Design</h3>
+            <p>Creating balanced and visually appealing compositions.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>75%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="75"></div></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-font"></i></div>
+            <h3>Typography</h3>
+            <p>Using fonts effectively to enhance design communication.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>70%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="70"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="skills-category reveal">
+        <div class="category-header">
+          <span class="category-icon"><i class="fas fa-tools"></i></span>
+          <span class="category-title">Creative Tools</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-image"></i></div>
+            <h3>Adobe Photoshop</h3>
+            <p>Photo manipulation, retouching, and graphic design.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>80%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="80"></div></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-adjust"></i></div>
+            <h3>Lightroom</h3>
+            <p>Photo editing, color grading, and batch processing.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>75%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="75"></div></div></div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="fas fa-pen-nib"></i></div>
+            <h3>Canva</h3>
+            <p>Quick and effective design for social media and layouts.</p>
+            <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Proficiency</span><span>85%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="85"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'skills/js/skills.js' %}"></script>
+{% endblock %}

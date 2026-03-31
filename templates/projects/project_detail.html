@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'project/css/project.css' %}">
+{% endblock %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<div class="projects-hero">
+  <div class="projects-grid-bg"></div>
+  <div class="projects-container animate-on-scroll">
+    <a href="{% url 'projects' %}" class="back-link">
+      <i class="fas fa-arrow-left"></i> All Projects
+    </a>
+    <div class="detail-status-wrap">
+      {% if project.status == 'live' %}
+      <span class="card-status status-live">{{ project.get_status_display }}</span>
+      {% elif project.status == 'development' %}
+      <span class="card-status status-dev">{{ project.get_status_display }}</span>
+      {% else %}
+      <span class="card-status status-archived">{{ project.get_status_display }}</span>
+      {% endif %}
+    </div>
+    <h1 class="projects-hero-title">{{ project.title }}</h1>
+  </div>
+</div>
+
+<!-- Detail Content -->
+<section class="projects-section">
+  <div class="projects-container">
+    <div class="detail-grid">
+
+      <!-- Main content -->
+      <div class="detail-main animate-on-scroll">
+
+        <!-- Gallery: multiple images (if any) -->
+        {% if project.images.all %}
+        <div class="detail-gallery">
+          <div class="detail-gallery-grid">
+            {% for img in project.images.all %}
+            <div class="gallery-item">
+              <img src="{{ img.image.url }}" alt="{{ img.caption|default:project.title }}" class="detail-image">
+              {% if img.caption %}
+              <p class="gallery-caption">{{ img.caption }}</p>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% elif project.image %}
+        <!-- Fallback single image -->
+        <div class="detail-image-wrap">
+          <img src="{{ project.image.url }}" alt="{{ project.title }}" class="detail-image">
+        </div>
+        {% endif %}
+
+        <h2 class="detail-section-title">Project Overview</h2>
+        <div class="detail-description">
+          {{ project.description|linebreaks }}
+        </div>
+
+      </div>
+      <!-- end main content -->
+
+      <!-- Sidebar -->
+      <div class="detail-sidebar animate-on-scroll">
+
+        <!-- Tech Stack -->
+        <div class="sidebar-card">
+          <h3 class="sidebar-heading">Tech Stack</h3>
+          <div class="sidebar-tags">
+            {% for tech in project.tech_list %}
+            <span class="tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="sidebar-card">
+          <h3 class="sidebar-heading">Links</h3>
+          <div class="sidebar-links">
+            {% if project.github_link %}
+            <a href="{{ project.github_link }}" target="_blank" rel="noopener" class="sidebar-link">
+              <i class="fab fa-github"></i> View on GitHub
+            </a>
+            {% endif %}
+            {% if project.live_demo_link %}
+            <a href="{{ project.live_demo_link }}" target="_blank" rel="noopener" class="sidebar-link">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+      <!-- end sidebar -->
+
+    </div>
+
+    <!-- Related Projects -->
+    {% if related %}
+    <div class="related-section animate-on-scroll">
+      <h2 class="related-title">More Projects</h2>
+      <div class="related-grid">
+        {% for rp in related %}
+        <a href="{% url 'project_detail' rp.slug %}" class="related-card">
+          <h3 class="related-card-title">{{ rp.title }}</h3>
+          <p class="related-card-desc">{{ rp.description|truncatechars:80 }}</p>
+          <div class="related-tags">
+            {% for tech in rp.tech_list|slice:":3" %}
+            <span class="related-tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'project/js/project.js' %}"></script>
+{% endblock %}

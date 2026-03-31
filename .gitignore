@@ -1,0 +1,40 @@
+# ------------------
+# Python / Django
+# ------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.env
+*.venv/
+env/
+venv/
+ENV/
+
+# Django specific
+db.sqlite3
+media/
+staticfiles/
+__pycache__/
+
+# ------------------
+# PyCharm / IDE
+# ------------------
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ------------------
+# OS / System files
+# ------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------
+# Optional / local files
+# ------------------
+*.swp

@@ -1,0 +1,34 @@
+{% load static %}
+<nav id="navbar">
+  <div class="wrap">
+    <div class="nav-inner">
+     <a href="{% url 'home' %}" class="nav-logo">
+  {% if profile and profile.name %}
+    {{ profile.name }}
+  {% else %}
+    A<span>.</span>Rivera
+  {% endif %}
+</a>
+      <div class="nav-links">
+        <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+        <a href="{% url 'about' %}"     class="nav-link {% if '/about/' in request.path %}active{% endif %}">About</a>
+        <a href="{% url 'skills' %}"    class="nav-link {% if '/skills/' in request.path %}active{% endif %}">Skills</a>
+        <a href="{% url 'projects' %}"  class="nav-link {% if '/projects/' in request.path %}active{% endif %}">Projects</a>
+        <a href="{% url 'education' %}" class="nav-link {% if '/education/' in request.path %}active{% endif %}">Education</a>
+        <a href="{% url 'contact' %}"   class="nav-link {% if '/contact/' in request.path %}active{% endif %}">Contact</a>
+      </div>
+      <a href="{% url 'contact' %}" class="nav-cta">Hire Me</a>
+      <button class="hamburger" id="hamBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="{% url 'home' %}" class="mobile-link {% if request.path == '/' %}active{% endif %}" onclick="closeMobile()">Home</a>
+    <a href="{% url 'about' %}"     class="mobile-link" onclick="closeMobile()">About</a>
+    <a href="{% url 'skills' %}"    class="mobile-link" onclick="closeMobile()">Skills</a>
+    <a href="{% url 'projects' %}"  class="mobile-link" onclick="closeMobile()">Projects</a>
+    <a href="{% url 'education' %}" class="mobile-link" onclick="closeMobile()">Education</a>
+    <a href="{% url 'contact' %}"   class="mobile-link" onclick="closeMobile()">Contact</a>
+  </div>
+</nav>

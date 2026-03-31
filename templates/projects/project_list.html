@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'project/css/project.css' %}">
+{% endblock %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+
+<!-- Page Hero -->
+<div class="projects-hero">
+  <div class="projects-container reveal">
+    <h1 class="projects-hero-title">My Portfolio</h1>
+    <p class="projects-hero-sub">A collection of photography, edited visuals, and graphic design works.</p>
+  </div>
+</div>
+
+<!-- Projects Grid -->
+<section class="projects-section">
+  <div class="projects-container">
+    <div class="projects-grid reveal">
+
+      {% for project in projects %}
+      <article class="card project-card">
+
+        <!-- Image / placeholder -->
+        <div class="card-image">
+          {% if project.image %}
+          <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-img">
+          {% else %}
+          <div class="card-img-placeholder">
+            {{ project.emoji|default:"📸" }}
+          </div>
+          {% endif %}
+
+          <div class="card-overlay"></div>
+
+          <!-- Status badge -->
+          <div class="card-status-wrap">
+            {% if project.status == 'live' %}
+            <span class="card-status status-live">Completed</span>
+            {% elif project.status == 'development' %}
+            <span class="card-status status-dev">In Progress</span>
+            {% else %}
+            <span class="card-status status-archived">Archived</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+          <h3 class="card-title">{{ project.title }}</h3>
+          <p class="card-desc">{{ project.description|truncatechars:120 }}</p>
+
+          <!-- Tags (instead of tech) -->
+          <div class="card-tags">
+            {% for tech in project.tech_list|slice:":4" %}
+            <span class="tag">{{ tech }}</span>
+            {% endfor %}
+            {% if project.tech_list|length > 4 %}
+            <span class="tag-more">+{{ project.tech_list|length|add:"-4" }}</span>
+            {% endif %}
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer">
+            {% if project.slug %}
+            <a href="{% url 'project_detail' project.slug %}" class="card-link">
+              View Work <i class="fas fa-arrow-right"></i>
+            </a>
+            {% else %}
+            <span class="card-link-disabled">No detail page</span>
+            {% endif %}
+
+            <div class="card-links">
+              {% if project.github_link %}
+              <a href="{{ project.github_link }}" target="_blank" rel="noopener" class="icon-btn">
+                <i class="fab fa-github"></i>
+              </a>
+              {% endif %}
+              {% if project.live_demo_link %}
+              <a href="{{ project.live_demo_link }}" target="_blank" rel="noopener" class="icon-btn">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </article>
+      {% empty %}
+      <p class="empty-state">No works yet. Add them in the admin.</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'project/js/project.js' %}"></script>
+{% endblock %}

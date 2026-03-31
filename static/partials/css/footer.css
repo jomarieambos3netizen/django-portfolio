@@ -1,0 +1,133 @@
+/* ============================================================
+   FOOTER — Clean, three‑column layout (matches screenshot)
+============================================================ */
+.footer {
+  background: #1e3a8a;      /* deep blue */
+  color: #ffffff;
+  padding: 70px 0 50px;
+  margin-top: 80px;
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 60px;
+}
+
+/* Brand column */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-logo:hover {
+  color: var(--accent);
+}
+
+.footer-tagline {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  max-width: 280px;
+  color: #e0e7ff;
+  margin: 0;
+}
+
+/* Section titles */
+.footer-col-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #bfdbfe;
+  margin-bottom: 24px;
+}
+
+/* Navigation & Connect lists */
+.footer-nav-list,
+.footer-connect-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-link {
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+/* Bottom bar */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #e0e7ff;
+}
+
+.footer-tech {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: #bfdbfe;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 50px 0 40px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .footer-container {
+    padding: 0 24px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-tagline {
+    max-width: 100%;
+  }
+}

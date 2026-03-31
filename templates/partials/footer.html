@@ -1,0 +1,66 @@
+{% load static %}
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="{% url 'home' %}" class="footer-logo">
+          {% if profile and profile.name %}
+            {{ profile.name }}
+          {% else %}
+            A<span>.</span>Rivera
+          {% endif %}
+        </a>
+
+        {% if profile and profile.tagline %}
+          <p class="footer-tagline">{{ profile.tagline }}</p>
+        {% else %}
+          <p class="footer-tagline">Aspiring Photographer & Graphic Designer | Exploring Visual Creativity</p>
+        {% endif %}
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <div class="footer-links">
+          <a href="{% url 'home' %}" class="footer-link">Home</a>
+          <a href="{% url 'about' %}" class="footer-link">About</a>
+          <a href="{% url 'skills' %}" class="footer-link">Skills</a>
+          <a href="{% url 'projects' %}" class="footer-link">Portfolio</a>
+          <a href="{% url 'education' %}" class="footer-link">Experience</a>
+          <a href="{% url 'contact' %}" class="footer-link">Contact</a>
+        </div>
+      </div>
+
+      <!-- Social (only GitHub, LinkedIn, Email) -->
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <div class="footer-socials">
+          {% if profile and profile.github_url %}
+            <a href="{{ profile.github_url }}" target="_blank" rel="noopener" class="soc-btn" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          {% endif %}
+          {% if profile and profile.linkedin_url %}
+            <a href="{{ profile.linkedin_url }}" target="_blank" rel="noopener" class="soc-btn" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          {% endif %}
+          {% if profile and profile.email %}
+            <a href="mailto:{{ profile.email }}" class="soc-btn" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span>&copy; {% now "Y" %} {{ profile.name|default:"Your Name" }}. All rights reserved.</span>
+      <span class="footer-tech">Photography · Graphic Design · Photo Editing · Visual Arts</span>
+    </div>
+  </div>
+</footer>

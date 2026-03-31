@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/home.css' %}">
+{% endblock %}
+
+{% block title %}{% if profile %}{{ profile.name }} — {{ profile.title }}{% else %}Creative Portfolio{% endif %}{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero">
+  <div class="hero-shape hero-shape-1"></div>
+  <div class="hero-shape hero-shape-2"></div>
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow reveal d1">
+          <span class="dot"></span>
+          Available for creative projects
+        </div>
+        <h1 class="hero-headline reveal d2">
+          Photographer &<br>
+          <span class="line-accent">Visual Designer.</span>
+        </h1>
+        <p class="hero-sub reveal d3">
+          {% if profile and profile.tagline %}
+            {{ profile.tagline }}
+          {% else %}
+            Passionate about capturing moments, enhancing visuals, and creating impactful designs through photography, editing, and graphic design.
+          {% endif %}
+        </p>
+        <div class="hero-actions reveal d4">
+          <a href="{% url 'projects' %}" class="btn btn-primary">
+            <i class="fas fa-image"></i> View Portfolio
+          </a>
+          <a href="{% url 'contact' %}" class="btn btn-outline">
+            <i class="fas fa-envelope"></i> Get In Touch
+          </a>
+        </div>
+        <div class="hero-stats reveal d5">
+          <div>
+            <div class="stat-val">{{ profile.years_learning|default:"2" }}</div>
+            <div class="stat-lbl">Years Learning</div>
+          </div>
+          <div>
+            <div class="stat-val">{{ project_count|default:"10" }}</div>
+            <div class="stat-lbl">Projects / Shots</div>
+          </div>
+          <div>
+            <div class="stat-val">{{ tech_count|default:"4" }}</div>
+            <div class="stat-lbl">Creative Tools</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-right d2">
+        <div class="hero-card-main">
+          <div class="hero-avatar-area">
+            {% if profile and profile.profile_photo %}
+              <img src="{{ profile.profile_photo.url }}" alt="{{ profile.name }}" class="hero-avatar-img">
+            {% else %}
+              <div class="avatar-initials">{% if profile %}{{ profile.name|slice:":2" }}{% else %}AR{% endif %}</div>
+            {% endif %}
+          </div>
+          <div class="hero-card-info">
+            <div class="hero-card-name">{% if profile %}{{ profile.name }}{% else %}Your Name{% endif %}</div>
+            <div class="hero-card-role">{% if profile %}{{ profile.title }}{% else %}Photographer · Graphic Designer{% endif %}</div>
+            <div class="hero-card-tags">
+              {% for skill in top_skills %}
+              <span class="htag">{{ skill.name }}</span>
+              {% empty %}
+              <span class="htag">Photography</span>
+              <span class="htag">Photo Editing</span>
+              <span class="htag">Graphic Design</span>
+              <span class="htag">Lightroom</span>
+              <span class="htag">Photoshop</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-float-2">
+          <div class="fi"><i class="fas fa-camera"></i></div>
+          <div>
+            <div style="font-size:0.78rem;color:#94908A;margin-bottom:2px">Currently exploring</div>
+            Creative Editing & Visual Design
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects -->
+<section id="projects">
+  <div class="wrap">
+    <div class="projects-header">
+      <div>
+        <div class="section-label reveal">Portfolio</div>
+        <h2 class="reveal">Featured Works</h2>
+      </div>
+      <a href="{% url 'projects' %}" class="btn btn-ghost reveal">
+        View all <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="projects-grid">
+      {% for project in featured_projects %}
+      <article class="project-card reveal d{{ forloop.counter }}">
+        <div class="project-thumb">
+          <div class="project-thumb-inner thumb-{{ forloop.counter|default:1 }}">
+
+          <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-img">
+
+          </div>
+          <span class="project-badge {% if project.live_demo_link %}badge-live{% else %}badge-dev{% endif %}">
+            {% if project.live_demo_link %}Completed{% else %}In Progress{% endif %}
+          </span>
+        </div>
+
+        <div class="project-body">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description|truncatechars:100 }}</p>
+
+          <div class="project-tags">
+            {% for tech in project.tech_list|slice:":4" %}
+            <span class="ptag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="project-footer">
+            <a href="{% url 'project_detail' project.slug %}" class="proj-link">
+              View Work <i class="fas fa-arrow-right"></i>
+            </a>
+            <div class="proj-icons">
+              {% if project.github_link %}
+              <a href="{{ project.github_link }}" class="proj-icon"><i class="fab fa-github"></i></a>
+              {% endif %}
+              {% if project.live_demo_link %}
+              <a href="{{ project.live_demo_link }}" class="proj-icon"><i class="fas fa-external-link-alt"></i></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </article>
+      {% empty %}
+      <p class="empty-state">No works yet. Add them in the admin.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-dot-bg"></div>
+  <div class="cta-content animate-on-scroll">
+    <h2 class="cta-title">Ready to create something amazing?</h2>
+    <p class="cta-sub">Let’s bring your ideas to life through photography and design.</p>
+    <a href="{% url 'contact' %}" class="btn-white">
+      <i class="fas fa-paper-plane"></i> Start a Project
+    </a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'core/js/home.js' %}"></script>
+{% endblock %}

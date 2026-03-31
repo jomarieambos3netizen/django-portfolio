@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Alex Rivera — Developer Portfolio{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}IT student passionate about backend systems. Building real-world projects with Java, Spring Boot, Python, and Django.{% endblock %}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Global CSS (includes all styles from the static file) -->
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+  <!-- Page-specific CSS -->
+  {% block extra_css %}{% endblock %}
+
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+  <!-- Prevent flash of un-themed content -->
+  <script>
+    (function() {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (!stored && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Loader -->
+  <!-- Loader -->
+<div id="loader">
+  <div class="loader-text">
+    {% if profile %}{{ profile.name }}{% else %}A<span>.</span>Rivera{% endif %}
+  </div>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar"></div>
+  </div>
+</div>
+
+  <!-- Floating Buttons (dark mode & back to top) -->
+  <div class="floating-btns">
+    <button class="float-btn" id="darkToggle" aria-label="Toggle theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button class="float-btn" id="backTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Navigation -->
+  {% include 'partials/header.html' %}
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  {% include 'partials/footer.html' %}
+
+  <!-- Global JS -->
+  <script src="{% static 'js/base.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

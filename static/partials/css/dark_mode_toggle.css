@@ -1,0 +1,30 @@
+/* dark_mode_toggle.css — Blue Design System */
+.theme-toggle-float {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--bg-card, #FFFFFF);
+  border: 1.5px solid var(--border, #E4DFD8);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-mid, #5C5751); font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+.theme-toggle-float:hover {
+  background: var(--accent, #3b82f6);
+  color: white;
+  border-color: var(--accent, #3b82f6);
+  transform: scale(1.08);
+}
+<script>
+  (function() {
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = stored === 'dark' || (!stored && prefersDark);
+    if (isDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  })();
+</script>

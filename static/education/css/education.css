@@ -1,0 +1,68 @@
+/* ============================================================
+   EDUCATION PAGE
+============================================================ */
+#education { background: var(--bg); }
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.edu-left h2 { margin-bottom: 20px; }
+.edu-left p { margin-bottom: 36px; }
+.edu-summary-cards { display: flex; flex-direction: column; gap: 16px; }
+.edu-sum-card {
+  display: flex; gap: 16px; align-items: center;
+  padding: 20px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all var(--transition);
+}
+.edu-sum-card:hover { border-color: var(--accent); transform: translateX(4px); }
+.edu-sum-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(59,130,246,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 1.1rem; flex-shrink: 0;
+}
+.edu-sum-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.edu-sum-sub { font-size: 0.82rem; color: var(--text-light); }
+
+/* Timeline (education specific) */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--border));
+}
+.tl-item { position: relative; margin-bottom: 48px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -28px; top: 4px;
+  width: 18px; height: 18px;
+  border-radius: 50%; background: var(--bg-card);
+  border: 2.5px solid var(--accent);
+  box-shadow: 0 0 0 4px var(--bg);
+  z-index: 1;
+  transition: all var(--transition);
+}
+.tl-item:hover .tl-dot { background: var(--accent); transform: scale(1.2); }
+.tl-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  transition: all var(--transition);
+}
+.tl-item:hover .tl-card { border-color: var(--border-strong); box-shadow: var(--shadow); }
+.tl-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.tl-title { font-size: 1.05rem; font-weight: 700; }
+.tl-badge {
+  padding: 3px 12px; border-radius: 50px;
+  font-size: 0.72rem; font-weight: 700;
+  background: rgba(59,130,246,0.1); color: var(--accent);
+  flex-shrink: 0;
+}
+.tl-school { font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+.tl-date { font-size: 0.8rem; color: var(--text-light); font-family: 'DM Mono', monospace; margin-bottom: 12px; }
+.tl-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+@media (max-width: 1024px) {
+  .edu-grid { grid-template-columns: 1fr; gap: 48px; }
+}
