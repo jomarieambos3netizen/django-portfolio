@@ -112,9 +112,7 @@
       <article class="project-card reveal d{{ forloop.counter }}">
         <div class="project-thumb">
           <div class="project-thumb-inner thumb-{{ forloop.counter|default:1 }}">
-
-          <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-img">
-
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-img">
           </div>
           <span class="project-badge {% if project.live_demo_link %}badge-live{% else %}badge-dev{% endif %}">
             {% if project.live_demo_link %}Completed{% else %}In Progress{% endif %}
@@ -135,14 +133,6 @@
             <a href="{% url 'project_detail' project.slug %}" class="proj-link">
               View Work <i class="fas fa-arrow-right"></i>
             </a>
-            <div class="proj-icons">
-              {% if project.github_link %}
-              <a href="{{ project.github_link }}" class="proj-icon"><i class="fab fa-github"></i></a>
-              {% endif %}
-              {% if project.live_demo_link %}
-              <a href="{{ project.live_demo_link }}" class="proj-icon"><i class="fas fa-external-link-alt"></i></a>
-              {% endif %}
-            </div>
           </div>
         </div>
       </article>
@@ -158,7 +148,7 @@
   <div class="cta-dot-bg"></div>
   <div class="cta-content animate-on-scroll">
     <h2 class="cta-title">Ready to create something amazing?</h2>
-    <p class="cta-sub">Let’s bring your ideas to life through photography and design.</p>
+    <p class="cta-sub">Let's bring your ideas to life through photography and design.</p>
     <a href="{% url 'contact' %}" class="btn-white">
       <i class="fas fa-paper-plane"></i> Start a Project
     </a>

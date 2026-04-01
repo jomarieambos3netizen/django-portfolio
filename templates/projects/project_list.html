@@ -54,7 +54,7 @@
           <h3 class="card-title">{{ project.title }}</h3>
           <p class="card-desc">{{ project.description|truncatechars:120 }}</p>
 
-          <!-- Tags (instead of tech) -->
+          <!-- Tags -->
           <div class="card-tags">
             {% for tech in project.tech_list|slice:":4" %}
             <span class="tag">{{ tech }}</span>
@@ -73,19 +73,6 @@
             {% else %}
             <span class="card-link-disabled">No detail page</span>
             {% endif %}
-
-            <div class="card-links">
-              {% if project.github_link %}
-              <a href="{{ project.github_link }}" target="_blank" rel="noopener" class="icon-btn">
-                <i class="fab fa-github"></i>
-              </a>
-              {% endif %}
-              {% if project.live_demo_link %}
-              <a href="{{ project.live_demo_link }}" target="_blank" rel="noopener" class="icon-btn">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-              {% endif %}
-            </div>
           </div>
         </div>
 

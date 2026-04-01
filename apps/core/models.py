@@ -11,6 +11,9 @@ class Profile(models.Model):
     github_url = models.URLField(blank=True)
     linkedin_url = models.URLField(blank=True)
     email = models.EmailField()
+    instagram_url = models.URLField(blank=True)
+    facebook_url = models.URLField(blank=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'Profile'

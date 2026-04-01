@@ -42,8 +42,8 @@
             <div>
               <div class="cm-lbl">Instagram</div>
               <div class="cm-val">
-                {% if profile and profile.instagram %}
-                  {{ profile.instagram }}
+                {% if profile and profile.instagram_url %}
+                  {{ profile.instagram_url }}
                 {% else %}
                   instagram.com/yourhandle
                 {% endif %}
@@ -56,8 +56,8 @@
             <div>
               <div class="cm-lbl">Facebook</div>
               <div class="cm-val">
-                {% if profile and profile.facebook %}
-                  {{ profile.facebook }}
+                {% if profile and profile.facebook_url %}
+                  {{ profile.facebook_url }}
                 {% else %}
                   facebook.com/yourprofile
                 {% endif %}
@@ -70,8 +70,8 @@
             <div>
               <div class="cm-lbl">Location</div>
               <div class="cm-val">
-                {% if profile and profile.location %}
-                  {{ profile.location }}
+                {% if profile and profile.address %}
+                  {{ profile.address }}
                 {% else %}
                   Your City, Country
                 {% endif %}
