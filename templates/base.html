@@ -40,7 +40,7 @@
   <!-- Loader -->
 <div id="loader">
   <div class="loader-text">
-    {% if profile %}{{ profile.name }}{% else %}A<span>.</span>Rivera{% endif %}
+    {% if profile and profile.name %} {{ profile.name.split|last }} {% else %} Rivera {% endif %}
   </div>
   <div class="loader-bar-wrap">
     <div class="loader-bar"></div>
