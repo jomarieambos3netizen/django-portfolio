@@ -31,3 +31,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('About page scripts loaded');
 });
+// Lightbox
+function openLightbox(url) {
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// Fix for mobile touch
+document.querySelectorAll('.achievement-card').forEach(function(card) {
+  card.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    var img = card.querySelector('img');
+    if (img) openLightbox(img.src);
+  });
+});

@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView
-from .models import Profile
+from .models import Profile, Achievement
 from apps.projects.models import Project
 
 class HomeView(TemplateView):
@@ -20,4 +20,5 @@ class AboutView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['profile'] = Profile.objects.first()
+        context['achievements'] = Achievement.objects.prefetch_related('images').all()
         return context

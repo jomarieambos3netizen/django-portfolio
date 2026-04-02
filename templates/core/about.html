@@ -219,21 +219,25 @@
       <h2 class="section-title">Creative Achievements</h2>
     </div>
     <div class="achievements-grid">
-      {% for a in achievements %}
-      <div class="achievement-card reveal">
-        <div class="achievement-icon"><i class="fas {{ a.icon|default:'fa-trophy' }}"></i></div>
-        <div class="achievement-body">
-          <div class="achievement-year">{{ a.year }}</div>
-          <div class="achievement-title">{{ a.title }}</div>
-          <div class="achievement-desc">{{ a.description }}</div>
-        </div>
-      </div>
-      {% empty %}
-      <p class="empty-state">No achievements yet. Add via admin.</p>
-      {% endfor %}
+  {% for a in achievements %}
+    {% for img in a.images.all %}
+    <div class="achievement-card reveal" onclick="openLightbox('{{ img.image.url }}')">
+      <img src="{{ img.image.url }}" alt="Achievement" loading="lazy">
     </div>
+    {% endfor %}
+  {% empty %}
+    <p>No achievements yet.</p>
+  {% endfor %}
+</div>
   </div>
 </section>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="Achievement">
+</div>
+
 
 {% endblock %}
 

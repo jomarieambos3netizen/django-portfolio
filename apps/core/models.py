@@ -21,6 +21,23 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+class Achievement(models.Model):
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name_plural = 'Achievements'
+
+    def __str__(self):
+        return f'Achievement {self.id}'
+
+
+class AchievementImage(models.Model):
+    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='achievements/')
+
+    def __str__(self):
+        return f'Image for Achievement {self.achievement.id}'
 
 from django.db import models
 
