@@ -1,29 +1,29 @@
-# 🎨 My Portfolio
+# My Portfolio
 
 A personal portfolio website showcasing my photography, UI designs, and creative works.
 
-## 📸 Features
+## Features
 - Photography gallery
 - UI/Graphic design projects
 - Responsive design
 - Clean modern layout
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - HTML, CSS, JavaScript
 - Django (Python)
 - Adobe Photoshop (for UI/graphics)
 
-## 📷 Projects
+##  Projects
 - Bayawan Music Fest Photography (2024–2025)
 - UI Design using Photoshop
 
-## 🚀 Deployment
+##  Deployment
 - PythonAnywhere / GitHub
 
-## 📬 Contact
+##  Contact
 - Email: jomarieambos3@gmail.com
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 1. Clone the repository:
    git clone https://github.com/yourusername/yourrepo.git
