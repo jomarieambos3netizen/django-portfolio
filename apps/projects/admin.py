@@ -20,9 +20,6 @@ class ProjectAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('title', 'slug', 'description', 'tech_stack', 'image')
         }),
-        ('Links', {
-            'fields': ('github_link', 'live_demo_link')
-        }),
         ('Metadata', {
             'fields': ('featured', 'created_at')
         }),
