@@ -114,9 +114,6 @@
           <div class="project-thumb-inner thumb-{{ forloop.counter|default:1 }}">
             <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-img">
           </div>
-          <span class="project-badge {% if project.live_demo_link %}badge-live{% else %}badge-dev{% endif %}">
-            {% if project.live_demo_link %}Completed{% else %}In Progress{% endif %}
-          </span>
         </div>
 
         <div class="project-body">
